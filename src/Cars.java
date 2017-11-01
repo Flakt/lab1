@@ -1,3 +1,5 @@
+import com.sun.javafx.geom.Vec2d;
+
 import java.awt.*;
 /**
  * Cars is an abstract base class for all cars which
@@ -18,8 +20,10 @@ import java.awt.*;
  * @version %I% %G%
  * @since 1.8
  */
-public class Cars {
+public class Cars implements Moveable {
 
+    private Vec2d vector; // Vector of the car
+    private Point point; // Point of the car
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
@@ -140,7 +144,7 @@ public class Cars {
 
     /**
      * Decreases currentSpeed depending on the argument.
-     * @param amount the amount ot increment or decrement. A double.
+     * @param amount the amount to increment or decrement. A double.
      */
     private void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
@@ -154,5 +158,22 @@ public class Cars {
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
+    }
+
+    @Override
+    public void move() {
+        this.point.x += vector.x * getCurrentSpeed();
+        this.point.y += vector.y * getCurrentSpeed();
+    }
+
+    @Override
+    public void turnLeft(Double angle) {
+        vector.x = vector.x * Math.cos(angle) - vector.y * Math.sin(angle);
+        vector.y =  vector.x * Math.sin(angle) + vector.y * Math.cos(angle);
+    }
+
+    @Override
+    public void turnRight(Double angle) {
+        turnLeft(angle * -1);
     }
 }
