@@ -2,9 +2,10 @@ import com.sun.javafx.geom.Vec2d;
 import org.junit.jupiter.api.Test;
 
 
-public class TestSaab95 {
+public class TestCars {
     Saab95 saab95 = new Saab95();
     Volvo240 volvo240 = new Volvo240();
+    Scania scania = new Scania();
     Cars car = new Cars();
 
     @Test
@@ -82,6 +83,16 @@ public class TestSaab95 {
     @Test
     public void testGetPoint() {
         saab95.getPoint();
+    }
+
+    @Test
+    public void testSetFlakAngle() {
+        scania.setFlakAngle(20);
+        assert (scania.getFlakAngle() == Math.toRadians(20));
+        Scania scania1 = new Scania();
+        scania1.startEngine();
+        scania1.setFlakAngle(20);
+        assert (scania1.getFlakAngle() == Math.toRadians(20));
     }
 
 
