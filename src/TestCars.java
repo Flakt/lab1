@@ -7,6 +7,7 @@ public class TestCars {
     Volvo240 volvo240 = new Volvo240();
     Scania scania = new Scania();
     Cars car = new Cars();
+    Biltransport biltransport = new Biltransport(10);
 
     @Test
     public void testSetTurboOn() {
@@ -35,7 +36,19 @@ public class TestCars {
     public void testMove() {
         saab95.gas(1);
         saab95.move();
+        biltransport.setFlakDown(true);
+        biltransport.loadCar(volvo240);
+        biltransport.loadCar(saab95);
+        biltransport.setFlakDown(false);
+        biltransport.startEngine();
+        biltransport.gas(1);
+        biltransport.move();
+        biltransport.stopEngine();
+        biltransport.setFlakDown(true);
+        biltransport.offLoadCar();
         assert (saab95.getPoint().equals(new Vec2d(0,1.25)));
+        assert (biltransport.getPoint().equals(new Vec2d(0,1.1)) && biltransport.getPoint().equals(volvo240.getPoint()));
+        assert (biltransport.getLoad().size() == 0);
     }
 
     @Test
@@ -94,6 +107,5 @@ public class TestCars {
         scania1.setFlakAngle(20);
         assert (scania1.getFlakAngle() == Math.toRadians(20));
     }
-
 
 }

@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * The type Biltransport.
@@ -41,6 +40,10 @@ public class Biltransport extends Cars implements Loadable {
         return maxLoad;
     }
 
+    public List getLoad() {
+        return load;
+    }
+
     /**
      * Is flak down boolean.
      *
@@ -70,12 +73,29 @@ public class Biltransport extends Cars implements Loadable {
      * @param car the car
      */
     public void loadCar(Cars car) {
-        if (load.size() < maxLoad && isClose(car)) {
+        if (load.size() < maxLoad && isClose(car) && isFlakDown() && car.getClass() != this.getClass()) {
+            car.stopEngine();
             load.add(car);
         }
     }
 
-    private boolean isClose(Cars car) {
+
+    /**
+     * Off load car.
+     */
+    public void offLoadCar(){
+        if(!load.isEmpty() && isFlakDown()){
+            load.remove(load.size() - 1);
+        }
+    }
+
+    /**
+     * Is close boolean.
+     *
+     * @param car the car
+     * @return the boolean
+     */
+    public boolean isClose(Cars car) {
         double rangeX = Math.abs(getPoint().x - car.getPoint().x);
         double rangeY = Math.abs(getPoint().y - car.getPoint().y);
         double range = Math.sqrt((rangeX * rangeX) + (rangeY * rangeY));
@@ -83,6 +103,39 @@ public class Biltransport extends Cars implements Loadable {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Starts engine if flak is not down.
+     * @see "startEngine at Cars"
+     */
+    @Override
+    public void startEngine() {
+        if (!isFlakDown()) {
+            super.startEngine();
+        }
+    }
+
+    /**
+     * Gas if flak is not down.
+     * @param amount a double that controls how much currentSpeed is incremented,
+     */
+    @Override
+    public void gas(double amount) {
+        if (!isFlakDown()) {
+            super.gas(amount);
+        }
+    }
+
+    /**
+     * Moves the transport first, then all other cars in the transports load follows.
+     */
+    @Override
+    public void move(){
+        super.move();
+        for (int i = 0; i < load.size(); i++) {
+            load.get(i).setPoint(getPoint());
+        }
     }
 
 }

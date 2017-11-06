@@ -1,6 +1,7 @@
 import com.sun.javafx.geom.Vec2d;
 
 import java.awt.*;
+
 /**
  * Cars is an abstract base class for all cars which
  * allows the creation of cars with different attributes.
@@ -9,20 +10,21 @@ import java.awt.*;
  * for creating different types of car objects. This state information
  * includes:
  * <ul>
- *     <li>The current vector</li>
- *     <li>The current point</li>
- *     <li>Amount of doors</li>
- *     <li>Amount of engine power</li>
- *     <li>The current speed</li>
- *     <li>The color</li>
- *     <li>The model name</li>
+ * <li>The current vector</li>
+ * <li>The current point</li>
+ * <li>Amount of doors</li>
+ * <li>Amount of engine power</li>
+ * <li>The current speed</li>
+ * <li>The color</li>
+ * <li>The model name</li>
  * </ul>
  * <br>
+ *
  * @author Stefan Chan
  * @version %I% %G%
  * @since 1.8
  */
-public class Cars implements Moveable {
+public class Cars implements Movable {
 
     private Vec2d vector = new Vec2d(0,1); // Vector of the car
     private Vec2d point = new Vec2d(0,0); // Point of the car
@@ -33,7 +35,6 @@ public class Cars implements Moveable {
     private String modelName; // The car model name
 
     /**
-     *
      * Class constructor.
      */
     public Cars() {
@@ -43,6 +44,8 @@ public class Cars implements Moveable {
     }
 
     /**
+     * Get nr doors int.
+     *
      * @return number of doors in the car-object.
      */
     public int getNrDoors(){
@@ -50,6 +53,7 @@ public class Cars implements Moveable {
     }
 
     /**
+     * Get engine power double.
      *
      * @return the engine power of the car-object.
      */
@@ -58,6 +62,7 @@ public class Cars implements Moveable {
     }
 
     /**
+     * Get current speed double.
      *
      * @return the current speed of the car-object.
      */
@@ -66,6 +71,7 @@ public class Cars implements Moveable {
     }
 
     /**
+     * Get color color.
      *
      * @return the color of the car-object.
      */
@@ -74,6 +80,7 @@ public class Cars implements Moveable {
     }
 
     /**
+     * Gets model name.
      *
      * @return the model name of the car-object.
      */
@@ -82,18 +89,21 @@ public class Cars implements Moveable {
     }
 
     /**
+     * Gets vector.
      *
      * @return the vector
      */
     public Vec2d getVector() {return vector;}
 
     /**
+     * Gets point.
      *
      * @return the point of the car
      */
     public Vec2d getPoint() {return point;}
 
     /**
+     * Sets model name.
      *
      * @param name the model name. A String.
      */
@@ -102,15 +112,16 @@ public class Cars implements Moveable {
     }
 
     /**
+     * Set color.
      *
      * @param clr the color. A enum from Color.
      */
-
     public void setColor(Color clr){
         color = clr;
     }
 
     /**
+     * Sets engine power.
      *
      * @param enginePower the engine power. A double.
      */
@@ -119,11 +130,22 @@ public class Cars implements Moveable {
     }
 
     /**
+     * Sets nr doors.
      *
      * @param doors the amount of doors. A int.
      */
     public void setNrDoors(int doors) {
         nrDoors = doors;
+    }
+
+
+    /**
+     * Sets point.
+     *
+     * @param p the p
+     */
+    public void setPoint(Vec2d p) {
+        this.point = p;
     }
 
     /**

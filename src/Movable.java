@@ -1,7 +1,7 @@
 /**
  * Created by schan on 2017-11-01.
  */
-public interface Moveable {
+public interface Movable {
 
     void move();
 
