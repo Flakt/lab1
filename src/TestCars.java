@@ -6,8 +6,9 @@ public class TestCars {
     Saab95 saab95 = new Saab95();
     Volvo240 volvo240 = new Volvo240();
     Scania scania = new Scania();
-    Cars car = new Cars();
-    Biltransport biltransport = new Biltransport(10);
+    Scania scania2 = new Scania();
+    Langtradare biltransport = new Langtradare(12);
+    Bilfarja bilfarja = new Bilfarja(10);
 
     @Test
     public void testSetTurboOn() {
@@ -33,7 +34,7 @@ public class TestCars {
     }
 
     @Test
-    public void testMove() {
+    public void testMoveAndLoad() {
         saab95.gas(1);
         saab95.move();
         biltransport.setFlakDown(true);
@@ -47,8 +48,17 @@ public class TestCars {
         biltransport.setFlakDown(true);
         biltransport.offLoadCar();
         assert (saab95.getPoint().equals(new Vec2d(0,1.25)));
-        assert (biltransport.getPoint().equals(new Vec2d(0,1.1)) && biltransport.getPoint().equals(volvo240.getPoint()));
+        assert (biltransport.getPoint().equals(new Vec2d(0,1.1)));
         assert (biltransport.getLoad().size() == 0);
+    }
+
+    @Test
+    public void testBilfarjaLoad() {
+        bilfarja.setFlakDown(true);
+        bilfarja.loadCar(scania);
+        bilfarja.loadCar(scania2);
+        bilfarja.offLoadCar();
+        assert (bilfarja.getLoad().get(0).equals(scania2));
     }
 
     @Test
@@ -68,7 +78,6 @@ public class TestCars {
     public void testSpeedFactor() {
         volvo240.speedFactor();
         saab95.speedFactor();
-        car.speedFactor();
     }
 
     @Test
@@ -101,11 +110,26 @@ public class TestCars {
     @Test
     public void testSetFlakAngle() {
         scania.setFlakAngle(20);
-        assert (scania.getFlakAngle() == Math.toRadians(20));
-        Scania scania1 = new Scania();
-        scania1.startEngine();
-        scania1.setFlakAngle(20);
-        assert (scania1.getFlakAngle() == Math.toRadians(20));
+        assert (scania.getFlakAngle() == 20);
+        scania2.setFlakDown(false);
+        assert (scania2.getFlakAngle() == 70);
+        scania2.startEngine();
+        scania2.setFlakDown(true);
+        assert (scania2.getFlakAngle() == 0);
+    }
+
+    @Test
+    public void testScaniaFlakDown() {
+        scania.startEngine();
+        scania.setFlakDown(true);
+        assert (scania.isFlakDown());
+        assert (!scania2.isFlakDown());
+    }
+
+    @Test
+    public void testGetMaxLoad() {
+        biltransport.getMaxLoad();
+        assert (biltransport.getMaxLoad() == 12);
     }
 
 }

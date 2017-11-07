@@ -3,31 +3,28 @@ import java.util.*;
 /**
  * The type Biltransport.
  */
-public class Biltransport extends Cars implements Loadable {
+abstract class Biltransport extends Vehicle implements Loadable {
 
     private boolean flakDown;
     private int maxLoad;
     private List<Cars> load = new ArrayList<>();
 
+
     /**
      * Instantiates a new Biltransport.
-     *
-     * @param load the load
      */
-    Biltransport(int load) {
-        setNrDoors(2);
+   public Biltransport() {
         setModelName("Biltransport");
         setFlakDown(false);
-        setMaxLoad(load);
+        setMaxLoad(10);
         stopEngine();
     }
 
     /**
-     * Sets max load.
-     *
+     * Sets max load.     *
      * @param maxLoad the max load
      */
-    public void setMaxLoad(int maxLoad) {
+    protected void setMaxLoad(int maxLoad) {
         this.maxLoad = maxLoad;
     }
 
@@ -73,7 +70,7 @@ public class Biltransport extends Cars implements Loadable {
      * @param car the car
      */
     public void loadCar(Cars car) {
-        if (load.size() < maxLoad && isClose(car) && isFlakDown() && car.getClass() != this.getClass()) {
+        if (load.size() < maxLoad && isClose(car) && isFlakDown()) {
             car.stopEngine();
             load.add(car);
         }
@@ -95,7 +92,7 @@ public class Biltransport extends Cars implements Loadable {
      * @param car the car
      * @return the boolean
      */
-    public boolean isClose(Cars car) {
+    private boolean isClose(Cars car) {
         double rangeX = Math.abs(getPoint().x - car.getPoint().x);
         double rangeY = Math.abs(getPoint().y - car.getPoint().y);
         double range = Math.sqrt((rangeX * rangeX) + (rangeY * rangeY));

@@ -3,12 +3,12 @@
  * <br>
  * A Scania object has all the instance variables defined in Cars, with the exception
  * of unique instance variables only existing within Saab95. This state information includes:
- *  <ul>
- *      <li>Every instance variable in Cars</li>
- *      <li>A double describing the angle of the flak</li>
- *  </ul>
+ * <ul>
+ * <li>Every instance variable in Cars</li>
+ * <li>A double describing the angle of the flak</li>
+ * </ul>
  */
-public class Scania extends Cars {
+public class Scania extends Cars implements Loadable {
 
     private double flakAngle;
 
@@ -35,10 +35,10 @@ public class Scania extends Cars {
     /**
      * Sets flakAngle. Only sets if angle <= 70 and angle >= 0.
      * If currentSpeed == 0, sets flakAngle if angle != 0.
+     *
      * @param angle the angle
      */
     public void setFlakAngle(double angle) {
-        angle = Math.toRadians(angle);
         if (angle >= 0.0 && angle <= 70.0) {
             if (getCurrentSpeed() == 0 && angle != 0) {
                 flakAngle = angle;
@@ -47,5 +47,30 @@ public class Scania extends Cars {
                 flakAngle = angle;
             }
         }
+    }
+
+    /**
+     * Sets flakAngle to 0 if flakDown equals true.
+     * @param flakDown the boolean
+     */
+    @Override
+    public void setFlakDown(boolean flakDown) {
+        if (flakDown) {
+            setFlakAngle(0);
+            return;
+        }
+        setFlakAngle(70);
+    }
+
+    /**
+     * Checks if flakAngle equals 0.
+     * @return true if flakAngle equals 0.
+     */
+    @Override
+    public boolean isFlakDown() {
+        if (getFlakAngle() == 0) {
+            return true;
+        }
+        return false;
     }
 }
