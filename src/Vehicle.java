@@ -23,7 +23,7 @@ public class Vehicle implements Movable {
      *
      * @return the engine power of the car-object.
      */
-    public double getEnginePower(){
+    protected double getEnginePower(){
         return enginePower;
     }
 
@@ -41,7 +41,7 @@ public class Vehicle implements Movable {
      *
      * @return the color of the car-object.
      */
-    public Color getColor(){
+    protected Color getColor(){
         return color;
     }
 
@@ -50,7 +50,7 @@ public class Vehicle implements Movable {
      *
      * @return the model name of the car-object.
      */
-    public String getModelName() {
+    protected String getModelName() {
         return modelName;
     }
 
@@ -73,7 +73,7 @@ public class Vehicle implements Movable {
      *
      * @param name the model name. A String.
      */
-    public void setModelName(String name) {
+    protected void setModelName(String name) {
         modelName = name;
     }
 
@@ -82,7 +82,7 @@ public class Vehicle implements Movable {
      *
      * @param clr the color. A enum from Color.
      */
-    public void setColor(Color clr){
+    protected void setColor(Color clr){
         color = clr;
     }
 
@@ -91,7 +91,7 @@ public class Vehicle implements Movable {
      *
      * @param enginePower the engine power. A double.
      */
-    public void setEnginePower(double enginePower) {
+    protected void setEnginePower(double enginePower) {
         this.enginePower = enginePower;
     }
 
@@ -100,7 +100,7 @@ public class Vehicle implements Movable {
      *
      * @param p the p
      */
-    public void setPoint(Vec2d p) {
+    protected void setPoint(Vec2d p) {
         this.point = p;
     }
 
