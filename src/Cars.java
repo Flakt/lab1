@@ -31,7 +31,7 @@ abstract class Cars extends Vehicle {
     /**
      * Class constructor.
      */
-    public Cars() {
+    protected Cars() {
         setNrDoors(4);
     }
 
@@ -49,7 +49,7 @@ abstract class Cars extends Vehicle {
      *
      * @param doors the amount of doors. A int.
      */
-    public void setNrDoors(int doors) {
+    protected void setNrDoors(int doors) {
         nrDoors = doors;
     }
 }

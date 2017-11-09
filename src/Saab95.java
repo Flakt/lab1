@@ -1,5 +1,8 @@
 import java.awt.*;
 
+/**
+ * The type Saab 95.
+ */
 public class Saab95 extends Cars {
     /**
      * Saab95 is a subclass to the superclass Cars.
@@ -41,16 +44,17 @@ public class Saab95 extends Cars {
     }
 
     /**
+     * Gets turbo on.
      *
-     * @return turboOn
+     * @return turboOn turbo on
      */
-    public boolean getTurboOn() {
+    protected boolean getTurboOn() {
         return turboOn;
     }
 
     /**
-     * Checks if turboOn == true, modifies the double turbo accordingly.
-     * @return the speedFactor for a Saab95 object.
+     * Calculates speedfactor depending whether turbo is on or not.
+     * @return speedFactor speedFactor
      */
     @Override
     protected double speedFactor(){

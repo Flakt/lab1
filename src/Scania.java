@@ -31,14 +31,13 @@ public class Scania extends Cars implements Loadable {
         return flakAngle;
     }
 
-
     /**
      * Sets flakAngle. Only sets if angle <= 70 and angle >= 0.
      * If currentSpeed == 0, sets flakAngle if angle != 0.
      *
      * @param angle the angle
      */
-    public void setFlakAngle(double angle) {
+    protected void setFlakAngle(double angle) {
         if (angle >= 0.0 && angle <= 70.0) {
             if (getCurrentSpeed() == 0 && angle != 0) {
                 flakAngle = angle;

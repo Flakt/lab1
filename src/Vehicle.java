@@ -13,7 +13,10 @@ public class Vehicle implements Movable {
     private Color color; // Color of the car
     private String modelName; // The car model name
 
-    public Vehicle() {
+    /**
+     * Instantiates a new Vehicle.
+     */
+    protected Vehicle() {
         setColor(Color.WHITE);
         setEnginePower(100);
     }
@@ -119,6 +122,7 @@ public class Vehicle implements Movable {
     }
 
     /**
+     * Speed factor double.
      *
      * @return the speed factor for the car-object.
      */
@@ -144,10 +148,9 @@ public class Vehicle implements Movable {
 
     /**
      * Public method that increases a cars currentSpeed.
+     *
      * @param amount a double that controls how much currentSpeed is incremented,
      */
-
-    // TODO fix this method according to lab pm
     public void gas(double amount){
         if (amount >= 0.0 && amount <= 1.0) {
             incrementSpeed(amount);
@@ -156,9 +159,9 @@ public class Vehicle implements Movable {
 
     /**
      * Public method that decreases a cars currentSpeed.
+     *
      * @param amount a double that controls how much currentSpeed is decremented.
      */
-    // TODO fix this method according to lab pm
     public void brake(double amount){
         if (amount >= 0 && amount <= 1) {
             decrementSpeed(amount);

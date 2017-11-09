@@ -13,7 +13,7 @@ abstract class Biltransport extends Vehicle implements Loadable {
     /**
      * Instantiates a new Biltransport.
      */
-   public Biltransport() {
+    protected Biltransport() {
         setModelName("Biltransport");
         setFlakDown(false);
         setMaxLoad(10);
@@ -22,6 +22,7 @@ abstract class Biltransport extends Vehicle implements Loadable {
 
     /**
      * Sets max load.     *
+     *
      * @param maxLoad the max load
      */
     protected void setMaxLoad(int maxLoad) {
@@ -37,7 +38,13 @@ abstract class Biltransport extends Vehicle implements Loadable {
         return maxLoad;
     }
 
-    public List getLoad() {
+
+    /**
+     * Gets load.
+     *
+     * @return the load
+     */
+    public List<Cars> getLoad() {
         return load;
     }
 
