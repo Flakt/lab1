@@ -1,6 +1,10 @@
 import com.sun.javafx.geom.Vec2d;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Cars is an abstract base class for all cars which
@@ -51,5 +55,16 @@ abstract class Cars extends Vehicle {
      */
     protected void setNrDoors(int doors) {
         nrDoors = doors;
+    }
+
+    protected BufferedImage getImage() {
+        try {
+            return ImageIO.read(new File("src\\pics\\" + getModelName() + ".jpg"));
+        }
+        catch(IOException ex)
+            {
+                ex.printStackTrace();
+            }
+       return null;
     }
 }

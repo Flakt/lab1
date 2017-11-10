@@ -6,7 +6,7 @@ import java.awt.*;
  * Created by schan on 2017-11-07.
  */
 public class Vehicle implements Movable {
-    private Vec2d vector = new Vec2d(0,1); // Vector of the car
+    private Vec2d vector = new Vec2d(1,0); // Vector of the car
     private Vec2d point = new Vec2d(0,0); // Point of the car
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
