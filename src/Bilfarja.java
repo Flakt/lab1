@@ -13,6 +13,10 @@ public class Bilfarja extends Biltransport {
         setMaxLoad(load);
     }
 
+    /**
+     * Overridden method of offLoadCar in superclass
+     * see @Biltransport offLoadCar
+     */
     @Override
     public void offLoadCar() {
         if (!getLoad().isEmpty() && isFlakDown()) {

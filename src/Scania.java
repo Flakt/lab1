@@ -14,6 +14,8 @@ public class Scania extends Cars implements Loadable {
 
     /**
      * Instantiates a new Scania.
+     * The Scania has 2 doors and the flakangle is set to 1 so it can start directly when spawning.
+     * The vehicle stands still when initializing.
      */
     public Scania() {
         setNrDoors(2);

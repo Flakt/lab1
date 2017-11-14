@@ -47,11 +47,16 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             for (Cars car : cars) {
                 car.move();
-                int x = (int) Math.round(car.getPoint().x);
+                int x = Math.min((int) Math.round(car.getPoint().x),700);
                 int y = (int) Math.round(car.getPoint().y);
                 //frame.drawPanel.moveit(x, y);
-                if (car.getPoint().x >= 700 || car.getPoint().x < 0) {
+                if (car.getPoint().x > 700) {
                     car.turnLeft(180.0);
+                    car.getPoint().x = 699;
+                }
+                if (car.getPoint().x < 0) {
+                    car.turnLeft(180.0);
+                    car.getPoint().x = 1;
                 }
                 // repaint() calls the paint Component method of the panel
                 frame.drawPanel.repaint();
@@ -86,5 +91,42 @@ public class CarController {
             car.stopEngine();
         }
     }
+
+    void turboOn() {
+        for (Cars car: cars) {
+            if (checkModel(car, "Saab95")) {
+                ((Saab95)car).setTurboOn();
+            }
+        }
+    }
+
+    void turboOff() {
+        for (Cars car: cars) {
+            if (checkModel(car, "Saab95")) {
+                ((Saab95)car).setTurboOff();
+            }
+        }
+    }
+
+    void raiseFlak() {
+        for (Cars car: cars) {
+            if (checkModel(car, "Scania")) {
+                ((Scania)car).setFlakDown(false);
+            }
+        }
+    }
+
+    void lowerFlak() {
+        for (Cars car: cars) {
+            if (checkModel(car, "Scania")) {
+                ((Scania)car).setFlakDown(true);
+            }
+        }
+    }
+
+    private boolean checkModel(Cars car, String name) {
+        return car.getModelName().equals(name);
+    }
+
 }
 

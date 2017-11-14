@@ -25,7 +25,7 @@ public class TestCars {
     @Test
     public void testTurnLeft() {
         saab95.turnLeft(90.0);
-        assert (saab95.getVector().equals(new Vec2d(-1,6.123233995736766E-17)));
+        assert (saab95.getVector().equals(new Vec2d(6.123233995736766E-17, 1)));
     }
 
     @Test
@@ -47,8 +47,8 @@ public class TestCars {
         biltransport.stopEngine();
         biltransport.setFlakDown(true);
         biltransport.offLoadCar();
-        assert (saab95.getPoint().equals(new Vec2d(0,1.25)));
-        assert (biltransport.getPoint().equals(new Vec2d(0,1.1)));
+        assert (saab95.getPoint().equals(new Vec2d(1.25,0)));
+        assert (biltransport.getPoint().equals(new Vec2d(1.1,0)));
         assert (biltransport.getLoad().size() == 0);
     }
 
