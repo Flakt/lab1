@@ -3,25 +3,25 @@ import java.util.*;
 /**
  * The type Biltransport.
  */
-abstract class Biltransport extends Vehicle implements Loadable {
+public class Biltransport implements Loadable {
 
     private boolean flakDown;
     private int maxLoad;
     private List<Cars> load = new ArrayList<>();
+    private Vehicle v;
 
 
     /**
      * Instantiates a new Biltransport.
      */
-    protected Biltransport() {
-        setModelName("Biltransport");
+    protected Biltransport(Vehicle v) {
         setFlakDown(false);
         setMaxLoad(10);
-        stopEngine();
+        this.v = v;
     }
 
     /**
-     * Sets max load.     *
+     * Sets max load.
      *
      * @param maxLoad the max load
      */
@@ -63,10 +63,9 @@ abstract class Biltransport extends Vehicle implements Loadable {
      * @param flakDown the flak down
      */
     public void setFlakDown(boolean flakDown) {
-        if (flakDown && getCurrentSpeed() == 0) {
+        if (flakDown && v.getCurrentSpeed() == 0) {
             this.flakDown = flakDown;
-        }
-        else if (!flakDown) {
+        } else if (!flakDown) {
             this.flakDown = flakDown;
         }
     }
@@ -77,8 +76,9 @@ abstract class Biltransport extends Vehicle implements Loadable {
      * @param car the car
      */
     public void loadCar(Cars car) {
-        if (load.size() < maxLoad && isClose(car) && isFlakDown()) {
+        if (load.size() < maxLoad && isClose(car) && isFlakDown() && !car.getIsLoaded()) {
             car.stopEngine();
+            car.setIsLoaded(true);
             load.add(car);
         }
     }
@@ -87,8 +87,9 @@ abstract class Biltransport extends Vehicle implements Loadable {
     /**
      * Off load car.
      */
-    public void offLoadCar(){
-        if(!load.isEmpty() && isFlakDown()){
+    public void offLoadCar() {
+        if (!load.isEmpty() && isFlakDown()) {
+            load.get(load.size() - 1).setIsLoaded(false);
             load.remove(load.size() - 1);
         }
     }
@@ -100,8 +101,8 @@ abstract class Biltransport extends Vehicle implements Loadable {
      * @return the boolean
      */
     private boolean isClose(Cars car) {
-        double rangeX = Math.abs(getPoint().x - car.getPoint().x);
-        double rangeY = Math.abs(getPoint().y - car.getPoint().y);
+        double rangeX = Math.abs(v.getPoint().x - car.getPoint().x);
+        double rangeY = Math.abs(v.getPoint().y - car.getPoint().y);
         double range = Math.sqrt((rangeX * rangeX) + (rangeY * rangeY));
         if (range <= 1) {
             return true;
@@ -109,36 +110,14 @@ abstract class Biltransport extends Vehicle implements Loadable {
         return false;
     }
 
-    /**
-     * Starts engine if flak is not down.
-     * @see "startEngine at Cars"
-     */
-    @Override
-    public void startEngine() {
-        if (!isFlakDown()) {
-            super.startEngine();
-        }
-    }
 
     /**
-     * Gas if flak is not down.
-     * @param amount a double that controls how much currentSpeed is incremented,
+     * Moves all cars in the transports load.
      */
-    @Override
-    public void gas(double amount) {
-        if (!isFlakDown()) {
-            super.gas(amount);
-        }
-    }
+    public void move() {
 
-    /**
-     * Moves the transport first, then all other cars in the transports load follows.
-     */
-    @Override
-    public void move(){
-        super.move();
         for (int i = 0; i < load.size(); i++) {
-            load.get(i).setPoint(getPoint());
+            load.get(i).setPoint(v.getPoint());
         }
     }
 

@@ -7,7 +7,7 @@ public class TestCars {
     Volvo240 volvo240 = new Volvo240();
     Scania scania = new Scania();
     Scania scania2 = new Scania();
-    Langtradare biltransport = new Langtradare(12);
+    Langtradare biltransport = new Langtradare();
     Bilfarja bilfarja = new Bilfarja(10);
 
     @Test
@@ -41,6 +41,7 @@ public class TestCars {
         biltransport.loadCar(volvo240);
         biltransport.loadCar(saab95);
         biltransport.setFlakDown(false);
+        System.out.println(biltransport.isFlakDown());
         biltransport.startEngine();
         biltransport.gas(1);
         biltransport.move();
@@ -129,7 +130,7 @@ public class TestCars {
     @Test
     public void testGetMaxLoad() {
         biltransport.getMaxLoad();
-        assert (biltransport.getMaxLoad() == 12);
+        assert (biltransport.getMaxLoad() == 10);
     }
 
 }

@@ -1,17 +1,44 @@
+/**
+ * Vehicle is an abstract base class for all vehicles which
+ * allows the creation of vehicles with different attributes.
+ * <br>
+ * A Vehicle object encapsulates all state information necessary
+ * for creating different types of vehicle objects. This state information
+ * includes:
+ * <ul>
+ * <li>The current vector</li>
+ * <li>The current point</li>
+ * <li>Amount of engine power</li>
+ * <li>The current speed</li>
+ * <li>The color</li>
+ * <li>The model name</li>
+ * </ul>
+ * <br>
+ *
+ * @author Stefan Chan
+ * @version %I% %G%
+ * @since 1.8
+ */
+
 import com.sun.javafx.geom.Vec2d;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
- * Created by schan on 2017-11-07.
+ * The type Vehicle.
  */
-public class Vehicle implements Movable {
-    private Vec2d vector = new Vec2d(1,0); // Vector of the car
-    private Vec2d point = new Vec2d(0,0); // Point of the car
-    private double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
-    private Color color; // Color of the car
-    private String modelName; // The car model name
+public abstract class Vehicle implements Movable {
+    private Vec2d vector = new Vec2d(1,0); // Vector of the vehicle
+    private Vec2d point = new Vec2d(0,0); // Point of the vehicle
+    private double enginePower; // Engine power of the vehicle
+    private double currentSpeed; // The current speed of the vehicle
+    private Color color; // Color of the vehicle
+    private String modelName; // The vehicle model name
+    private boolean isLoaded = false; // Is the vehicle loaded?
 
     /**
      * Instantiates a new Vehicle.
@@ -108,10 +135,30 @@ public class Vehicle implements Movable {
     }
 
     /**
-     * Sets currentSpeed to 0,1.
+     * Gets isLoaded.
+     *
+     * @return the is loaded
+     */
+    public boolean getIsLoaded() {
+        return isLoaded;
+    }
+
+    /**
+     * Sets isLoaded.
+     *
+     * @param bool the bool
+     */
+    protected void setIsLoaded(boolean bool) {
+        isLoaded = bool;
+    }
+
+    /**
+     * Sets currentSpeed to 0,1 if isLoaded
      */
     public void startEngine(){
-        currentSpeed = 0.1;
+        if (!isLoaded) {
+            currentSpeed = 0.1;
+        }
     }
 
     /**
@@ -152,7 +199,7 @@ public class Vehicle implements Movable {
      * @param amount a double that controls how much currentSpeed is incremented,
      */
     public void gas(double amount){
-        if (amount >= 0.0 && amount <= 1.0) {
+        if (amount >= 0.0 && amount <= 1.0 && !isLoaded) {
             incrementSpeed(amount);
         }
     }
@@ -166,6 +213,22 @@ public class Vehicle implements Movable {
         if (amount >= 0 && amount <= 1) {
             decrementSpeed(amount);
         }
+    }
+
+    /**
+     * Gets image.
+     *
+     * @return the image
+     */
+    protected BufferedImage getImage() {
+        try {
+            return ImageIO.read(new File("src\\pics\\" + getModelName() + ".jpg"));
+        }
+        catch(IOException ex)
+        {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     /**

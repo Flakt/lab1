@@ -50,10 +50,6 @@ public class Scania extends Cars implements Loadable {
         }
     }
 
-    /**
-     * Sets flakAngle to 0 if flakDown equals true.
-     * @param flakDown the boolean
-     */
     @Override
     public void setFlakDown(boolean flakDown) {
         if (flakDown) {
@@ -63,10 +59,6 @@ public class Scania extends Cars implements Loadable {
         setFlakAngle(70);
     }
 
-    /**
-     * Checks if flakAngle equals 0.
-     * @return true if flakAngle equals 0.
-     */
     @Override
     public boolean isFlakDown() {
         if (getFlakAngle() == 0) {

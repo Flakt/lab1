@@ -9,6 +9,9 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
+/**
+ * The type Car controller.
+ */
 public class CarController {
     // member fields:
 
@@ -18,13 +21,24 @@ public class CarController {
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
 
-    // The frame that represents this instance View of the MVC pattern
+    /**
+     * The Frame.
+     */
+// The frame that represents this instance View of the MVC pattern
     CarView frame;
-    // A list of cars, modify if needed
+    /**
+     * The constant cars.
+     */
+// A list of cars, modify if needed
    public static ArrayList<Cars> cars = new ArrayList<>();
 
     //methods:
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
@@ -64,7 +78,12 @@ public class CarController {
         }
     }
 
-    // Calls the gas method for each car once
+    /**
+     * Gas.
+     *
+     * @param amount the amount
+     */
+// Calls the gas method for each car once
     void gas(double amount) {
         double gas = amount / 100;
         for (Cars car : cars
@@ -73,6 +92,11 @@ public class CarController {
         }
     }
 
+    /**
+     * Brake.
+     *
+     * @param amount the amount
+     */
     void brake(double amount) {
         double brake = amount / 100;
         for (Cars car : cars) {
@@ -80,18 +104,27 @@ public class CarController {
         }
     }
 
+    /**
+     * Start engine.
+     */
     void startEngine() {
         for (Cars car: cars) {
             car.startEngine();
         }
     }
 
+    /**
+     * Stop engine.
+     */
     void stopEngine() {
         for (Cars car: cars) {
             car.stopEngine();
         }
     }
 
+    /**
+     * Turbo on.
+     */
     void turboOn() {
         for (Cars car: cars) {
             if (checkModel(car, "Saab95")) {
@@ -100,6 +133,9 @@ public class CarController {
         }
     }
 
+    /**
+     * Turbo off.
+     */
     void turboOff() {
         for (Cars car: cars) {
             if (checkModel(car, "Saab95")) {
@@ -108,6 +144,9 @@ public class CarController {
         }
     }
 
+    /**
+     * Raise flak.
+     */
     void raiseFlak() {
         for (Cars car: cars) {
             if (checkModel(car, "Scania")) {
@@ -116,6 +155,9 @@ public class CarController {
         }
     }
 
+    /**
+     * Lower flak.
+     */
     void lowerFlak() {
         for (Cars car: cars) {
             if (checkModel(car, "Scania")) {

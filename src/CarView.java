@@ -18,36 +18,86 @@ import static java.awt.event.KeyEvent.VK_D;
  * It communicates with the Controller by calling methods of it when an action fires of in
  * each of it's components.
  * TODO: Write more actionListeners and wire the rest of the buttons
- **/
-
+ */
 public class CarView extends JFrame{
     private static final int X = 800;
     private static final int Y = 800;
 
-    // The controller member
+    /**
+     * The Car c.
+     */
+// The controller member
     CarController carC;
 
 
+    /**
+     * The Draw panel.
+     */
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
+    /**
+     * The Control panel.
+     */
     JPanel controlPanel = new JPanel();
 
+    /**
+     * The Gas panel.
+     */
     JPanel gasPanel = new JPanel();
+    /**
+     * The Gas spinner.
+     */
     JSpinner gasSpinner = new JSpinner();
+    /**
+     * The Gas amount.
+     */
     int gasAmount = 0;
+    /**
+     * The Gas label.
+     */
     JLabel gasLabel = new JLabel("Amount of gas");
 
+    /**
+     * The Gas button.
+     */
     JButton gasButton = new JButton("Gas");
+    /**
+     * The Brake button.
+     */
     JButton brakeButton = new JButton("Brake");
+    /**
+     * The Turbo on button.
+     */
     JButton turboOnButton = new JButton("Saab Turbo on");
+    /**
+     * The Turbo off button.
+     */
     JButton turboOffButton = new JButton("Saab Turbo off");
+    /**
+     * The Lift bed button.
+     */
     JButton liftBedButton = new JButton("Scania Lift Bed");
+    /**
+     * The Lower bed button.
+     */
     JButton lowerBedButton = new JButton("Lower Lift Bed");
 
+    /**
+     * The Start button.
+     */
     JButton startButton = new JButton("Start all cars");
+    /**
+     * The Stop button.
+     */
     JButton stopButton = new JButton("Stop all cars");
 
-    // Constructor
+    /**
+     * Instantiates a new Car view.
+     *
+     * @param framename the framename
+     * @param cc        the cc
+     */
+// Constructor
     public CarView(String framename, CarController cc){
         this.carC = cc;
         initComponents(framename);
