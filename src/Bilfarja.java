@@ -34,7 +34,7 @@ public class Bilfarja extends Vehicle implements Ibiltransport {
      *
      * @see "startEngine at Cars"
      */
-
+    @Override
     public void startEngine() {
         if (!biltransport.isFlakDown()) {
             super.startEngine();
@@ -46,6 +46,7 @@ public class Bilfarja extends Vehicle implements Ibiltransport {
      *
      * @param amount a double that controls how much currentSpeed is incremented,
      */
+    @Override
     public void gas(double amount) {
         if (!biltransport.isFlakDown()) {
             super.gas(amount);
@@ -55,6 +56,7 @@ public class Bilfarja extends Vehicle implements Ibiltransport {
     /**
      * Moves the transport first, then all other cars in the transports load follows.
      */
+    @Override
     public void move() {
         super.move();
         biltransport.move();

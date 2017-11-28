@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -30,7 +31,7 @@ public class CarController {
      * The constant cars.
      */
 // A list of cars, modify if needed
-   public static ArrayList<Cars> cars = new ArrayList<>();
+   public static List<Cars> cars = new ArrayList<>();
 
     //methods:
 
