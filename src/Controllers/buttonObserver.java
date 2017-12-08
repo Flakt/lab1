@@ -3,7 +3,7 @@ package Controllers;
 /**
  * Created by schan on 2017-12-07.
  */
-public interface buttonObserver {
+public interface ButtonObserver {
     void actOnGas(double amount);
 
     void actOnBrake(double amount);

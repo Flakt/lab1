@@ -1,10 +1,5 @@
 package Controllers;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import Vehicles.*;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -15,7 +10,7 @@ import Vehicles.*;
 /**
  * The type Car controller.
  */
-public class CarController implements buttonObserver {
+public class CarController implements ButtonObserver {
     private CarModel carModel;
 
     public CarController(CarModel carModel) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 import Vehicles.*;
 
-public class CarModel implements modelObserver {
+public class CarModel implements ModelObserver {
 
     private ArrayList<Vehicle> vehicles;
 
@@ -57,7 +57,7 @@ public class CarModel implements modelObserver {
     }
 
     protected void removeRandomCar() {
-        int rand = (int)(Math.random() * vehicles.size());
+        int rand = (int) (Math.random() * vehicles.size());
         removeVehicle(rand);
     }
 
@@ -91,7 +91,7 @@ public class CarModel implements modelObserver {
      * Start engine.
      */
     void startEngine() {
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             vehicle.startEngine();
         }
     }
@@ -100,7 +100,7 @@ public class CarModel implements modelObserver {
      * Stop engine.
      */
     void stopEngine() {
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             vehicle.stopEngine();
         }
     }
@@ -109,9 +109,9 @@ public class CarModel implements modelObserver {
      * Turbo on.
      */
     void turboOn() {
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             if (checkModel(vehicle, "Saab95")) {
-                ((Saab95)vehicle).setTurboOn();
+                ((Saab95) vehicle).setTurboOn();
                 System.out.println("Turbo on");
             }
         }
@@ -121,9 +121,9 @@ public class CarModel implements modelObserver {
      * Turbo off.
      */
     void turboOff() {
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             if (checkModel(vehicle, "Saab95")) {
-                ((Saab95)vehicle).setTurboOff();
+                ((Saab95) vehicle).setTurboOff();
             }
         }
     }
@@ -132,9 +132,9 @@ public class CarModel implements modelObserver {
      * Raise flak.
      */
     void raiseFlak() {
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             if (checkModel(vehicle, "Scania")) {
-                ((Scania)vehicle).setFlakDown(false);
+                ((Scania) vehicle).setFlakDown(false);
             }
         }
     }
@@ -143,9 +143,9 @@ public class CarModel implements modelObserver {
      * Lower flak.
      */
     void lowerFlak() {
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             if (checkModel(vehicle, "Scania")) {
-                ((Scania)vehicle).setFlakDown(true);
+                ((Scania) vehicle).setFlakDown(true);
                 System.out.println("Flak lowered");
             }
         }
@@ -158,14 +158,14 @@ public class CarModel implements modelObserver {
     public void draw(Graphics g) {
         int i = 0;
         for (Vehicle vehicle : vehicles) {
-            g.drawImage(vehicle.getImage(), (int)vehicle.getPoint().x, (int)vehicle.getPoint().y + 100 * i, null); // see javadoc for more info on the parameters
+            g.drawImage(vehicle.getImage(), (int) vehicle.getPoint().x, (int) vehicle.getPoint().y + 100 * i, null); // see javadoc for more info on the parameters
             i++;
         }
     }
 
-    public void updateVehicle(Vehicle vehicle){
+    public void updateVehicle(Vehicle vehicle) {
         vehicle.move();
-        int x = Math.min((int) Math.round(vehicle.getPoint().x),700);
+        int x = Math.min((int) Math.round(vehicle.getPoint().x), 700);
         int y = (int) Math.round(vehicle.getPoint().y);
         //frame.drawPanel.moveit(x, y);
         if (vehicle.getPoint().x > 700) {

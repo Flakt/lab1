@@ -1,14 +1,12 @@
 package Controllers;
-import Vehicles.*;
 
 import java.awt.*;
-import java.util.List;
 import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel {
-    private modelObserver modelObserver;
+    private ModelObserver modelObserver;
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
@@ -19,8 +17,8 @@ public class DrawPanel extends JPanel {
 
     }
 
-    public void setModelObserver(modelObserver modelObserver){
-        this.modelObserver=modelObserver;
+    public void setModelObserver(ModelObserver modelObserver) {
+        this.modelObserver = modelObserver;
     }
 
 
